@@ -52,6 +52,11 @@ module Radius
     def nesting
       @context.current_nesting
     end
+
+    # Defining a version of CurrentNesting that returns tag types and names. This is for building nested cache sets for complex, non-greedy cache expiry.
+    def nested_tags
+      @context.nested_tags
+    end
   
     # Fires off Context#tag_missing for the current tag.
     def missing!

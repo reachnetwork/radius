@@ -80,6 +80,11 @@ module Radius
       @tag_binding_stack.collect { |tag| tag.name }.join(':')
     end
 
+    # Defining a version of CurrentNesting that returns tag types and names. This is for building nested cache sets for complex, non-greedy cache expiry.
+    def nested_tags
+      @tag_binding_stack.collect { |tag| {type: tag.name, name: tag.attr['name']} }
+    end
+
     # make a usable copy of this context
     def dup # :nodoc:
       rv = self.class.new
